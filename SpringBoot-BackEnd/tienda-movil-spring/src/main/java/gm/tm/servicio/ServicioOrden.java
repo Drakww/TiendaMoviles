@@ -8,6 +8,6 @@ package gm.tm.servicio;
  *
  * @author jorge
  */
-public class ServicioProducto {
+public class ServicioOrden {
     
 }

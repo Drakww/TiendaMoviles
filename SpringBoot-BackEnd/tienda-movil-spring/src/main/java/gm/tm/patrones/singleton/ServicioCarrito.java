@@ -11,31 +11,47 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author jorge
- * Singleton
+ * @author jorge Singleton
  */
 @Service
-@Scope("sesion")
 public class ServicioCarrito {
-    private static ServicioCarrito instancia;
-    private Carrito carrito;
-    
-    private ServicioCarrito(){
-        this.carrito = new Carrito();// Inicializa el carrito vacío
+
+    private static ServicioCarrito instancia; // Instancia única (Singleton)
+    private final Carrito carrito;
+
+    // Constructor privado para Singleton
+    private ServicioCarrito() {
+        this.carrito = new Carrito(); // Inicializa un carrito vacío
     }
-    
-    public static synchronized ServicioCarrito getIsntance(){
-        if (instancia ==null) {
+
+    // Método para obtener la instancia única del ServicioCarrito
+    public static synchronized ServicioCarrito getInstance() {
+        if (instancia == null) {
             instancia = new ServicioCarrito();
         }
         return instancia;
     }
-    
-    public Carrito getCarrito(){
+
+    // Retorna el carrito único
+    public Carrito getCarrito() {
         return carrito;
     }
-    
-    public void agregarProducto(Producto producto){
-//        carrito.getProductos().add(producto);
+
+    // Agrega un producto al carrito
+    public void agregarProducto(Producto producto) {
+        carrito.getProductos().add(producto);
+        carrito.setTotal(carrito.getTotal() + producto.getPrecio()); // Actualiza el total
+    }
+
+    // Elimina un producto del carrito
+    public void eliminarProducto(Producto producto) {
+        carrito.getProductos().remove(producto);
+        carrito.setTotal(carrito.getTotal() - producto.getPrecio()); // Actualiza el total
+    }
+
+    // Limpia el carrito (opcional)
+    public void limpiarCarrito() {
+        carrito.getProductos().clear();
+        carrito.setTotal(0.0);
     }
 }
