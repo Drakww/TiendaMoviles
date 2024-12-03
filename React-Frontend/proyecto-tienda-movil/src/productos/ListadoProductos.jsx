@@ -47,7 +47,7 @@ export default function ListadoProductos() {
             </div>
           ))
         ) : (
-          <p>No hay productos disponibles</p>
+          <p className='mensaje'>No hay productos disponibles</p>
         )}
       </div>
     </div>

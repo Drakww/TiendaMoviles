@@ -70,6 +70,10 @@ export default function CrearProducto() {
                 <input type="text" name="imagen_url" value={formData.imagen_url} onChange={handleChange}/>
             </div>
             <div>
+                <label>Stock:</label>
+                <input type="text" name="stock" value={formData.stock} onChange={handleChange}/>
+            </div>
+            <div>
                 <label>Tipo de Producto:</label>
                 <select name="tipo" value={formData.tipo} onChange={handleChange} required>
                     <option value="">Seleccione un tipo</option> {/*Opcion predeterminada*/}
