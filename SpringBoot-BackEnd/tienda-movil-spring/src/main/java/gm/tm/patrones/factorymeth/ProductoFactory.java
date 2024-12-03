@@ -9,22 +9,15 @@ import gm.tm.modelo.Producto;
 /**
  *
  * @author jorge
- * Factory Method
  */
-public abstract class ProductoFactory {
-    public abstract Producto crearProducto(String nombre, double precio, String descripcion, int stock);
-
-    public static ProductoFactory getFactory(String tipo) {
-        switch (tipo.toLowerCase()) {
-            case "alta":
-                return new ProductoGamaAltaFactory();
-            case "media":
-                return new ProductoGamaMediaFactory();
-            case "baja":
-                return new ProductoGamaBajaFactory();
-            default:
-                throw new IllegalArgumentException("Tipo de producto desconocido");
+public class ProductoFactory {
+    public static Producto crearProducto(String tipo){
+        if ("smartphone".equalsIgnoreCase(tipo)) {
+            return new Smartphone();
+        } else if("tablet".equalsIgnoreCase(tipo)){
+            return new Tablet();
+        } else{
+            throw new IllegalAccessError("Tipo de producto no sportado/no encontrado:" + tipo);
         }
     }
 }
-

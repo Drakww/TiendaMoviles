@@ -1,0 +1,68 @@
+body{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.producto-lista {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .producto-cards {
+    display: flex;
+    color: #000000;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .producto-card {
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    width: 250px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .producto-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .producto-imagen {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+
+  }
+  
+  .producto-info {
+    padding: 15px;
+  }
+  
+  .producto-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .producto-info p {
+    margin: 5px 0;
+  }
+  
+  .btn-agregar {
+    background-color: #3d423e;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-agregar:hover {
+    background-color: #1d1f1e;
+  }
