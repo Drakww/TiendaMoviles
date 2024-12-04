@@ -4,18 +4,20 @@
  */
 package gm.tm.patrones.factorymeth;
 
-import gm.tm.modelo.Producto;
+import gm.tm.patrones.Builder.ProductoBuilder;
+import gm.tm.patrones.Builder.SmarthponeBuilder;
+import gm.tm.patrones.Builder.TabletBuilder;
 
 /**
  *
  * @author jorge
  */
 public class ProductoFactory {
-    public static Producto crearProducto(String tipo){
+    public static ProductoBuilder<?> crearProducto(String tipo){
         if ("smartphone".equalsIgnoreCase(tipo)) {
-            return new Smartphone();
+            return new SmarthponeBuilder();
         } else if("tablet".equalsIgnoreCase(tipo)){
-            return new Tablet();
+            return new TabletBuilder();
         } else{
             throw new IllegalAccessError("Tipo de producto no sportado/no encontrado:" + tipo);
         }

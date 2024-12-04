@@ -27,8 +27,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//name = "tipo": Define el nombre de la columna que se usará para almacenar el 
+//tipo de la entidad. En este caso, se llama tipo
+//discriminatorType = DiscriminatorType.STRING define que sera de tipo string
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
-public class Producto {
+public abstract class Producto {
     @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -38,4 +41,7 @@ public class Producto {
     private double precio;
     private String imagen_url;
     private int stock;
+    
+    //Metodo abstracto para obtener el tipo de producto
+    public abstract String getTipo();
 }

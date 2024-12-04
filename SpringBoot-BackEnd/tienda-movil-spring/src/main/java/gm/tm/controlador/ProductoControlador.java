@@ -46,26 +46,23 @@ public class ProductoControlador {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<Producto> crearProducto(@RequestBody ProductoDTO productoDTO) {
-        try {
-            //usando la fabrica para crear el producto del tipo correspondiente
-            Producto producto = ProductoFactory.crearProducto(productoDTO.getTipo());
+    public Producto crearProducto(@RequestBody ProductoDTO productoDTO) {
+        //Creando producto usando el Factory y el Build
 
-            producto.setNombre(productoDTO.getNombre());
-            producto.setDescripcion(productoDTO.getDescripcion());
-            producto.setPrecio(productoDTO.getPrecio());
-            producto.setStock(productoDTO.getStock());
-            producto.setImagen_url(productoDTO.getImagen_url());
+            Producto producto = ProductoFactory.crearProducto(productoDTO.getTipo())
+                    .setNombre(productoDTO.getNombre())
+                    .setDescripcion(productoDTO.getDescripcion())
+                    .setPrecio(productoDTO.getPrecio())
+                    .setImageUrl(productoDTO.getImagen_url())
+                    .setStock(productoDTO.getStock())
+                    .aplicarAtributoEspecifico(productoDTO)
+                    .build();
 
-            Producto productoGuardado = productoServicio.guardarProducto(producto);
+            logger.info("Empleado a agregar: " + producto);
+            // Guardar producto en la base de datos
+            productoServicio.guardarProducto(producto);
 
-            // Respondemos con el producto creado y un estado 201 (CREATED)
-            return new ResponseEntity<>(productoGuardado, HttpStatus.CREATED);
-            
-        } catch (IllegalArgumentException  e) {
-             // Si ocurre un error con el tipo, devolvemos un estado 400 (BAD REQUEST)
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+            // Devolver el producto creado
+            return producto;
     }
-
 }

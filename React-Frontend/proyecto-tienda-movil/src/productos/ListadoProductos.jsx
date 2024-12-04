@@ -41,6 +41,21 @@ export default function ListadoProductos() {
                 <p>{producto.descripcion}</p>
                 <p><strong>Precio: </strong>{producto.precio}</p>
                 <p><strong>Stock:</strong>{producto.stock}</p>
+                {/* Condicionalmente mostrar atributos dependiente del tipo de producto*/ }
+                {
+                  producto.tipo === "smartphone" && (
+                    <>
+                    <p><strong>RAM:</strong> {producto.ram}</p>
+                    </>
+                  )
+                }
+                {
+                  producto.tipo === "tablet" && (
+                    <>
+                    <p><strong>Pantalla:</strong> {producto.tamanoPantalla}</p>
+                    </>
+                  )
+                }
 
                 <button className='btn-agregar'>Agregar al carrito</button>
               </div>

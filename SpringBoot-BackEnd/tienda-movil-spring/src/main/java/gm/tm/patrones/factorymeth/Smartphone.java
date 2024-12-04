@@ -5,15 +5,33 @@
 package gm.tm.patrones.factorymeth;
 
 import gm.tm.modelo.Producto;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author jorge
  */
 @Entity
+//JPA: usamos en el contexto de herencia de entindades
+@DiscriminatorValue("smarthphone")
 public class Smartphone extends Producto{
-    public Smartphone(){
-        super();
+    private int ram; //Memoria RAM especifica para el Smartphone
+    @Override
+    public String getTipo() {
+        return "smartphone";
     }
+    
+    public int getRam(){
+        return ram;
+    }
+    
+    public void setRam(int ram){
+        this.ram = ram;
+    }
+    
+    
 }
