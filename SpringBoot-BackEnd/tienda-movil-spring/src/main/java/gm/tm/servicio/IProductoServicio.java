@@ -4,6 +4,7 @@
  */
 package gm.tm.servicio;
 
+import gm.tm.dto.ProductoRequest;
 import gm.tm.modelo.Producto;
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface IProductoServicio {
     public Producto guardarProducto(Producto producto);
     
     public void eliminarProducto(Producto producto);
+    
+    public boolean actualizarStock(Integer idProducto, int cantidad);
+
 }

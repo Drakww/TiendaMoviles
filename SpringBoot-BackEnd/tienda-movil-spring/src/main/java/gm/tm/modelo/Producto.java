@@ -38,10 +38,21 @@ public abstract class Producto {
     
     private String nombre;
     private String descripcion;
-    private double precio;
+    public double precio;
     private String imagen_url;
     private int stock;
     
+    
+    public Producto(String nombre, String descripcion, double precio, String imagenUrl, int stock) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen_url = imagenUrl;
+        this.stock = stock;
+    }
+    
     //Metodo abstracto para obtener el tipo de producto
     public abstract String getTipo();
+ 
+    
 }

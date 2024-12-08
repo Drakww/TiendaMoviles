@@ -5,6 +5,8 @@ import Nav from './template/Nav'
 import Login from "./login/Login";
 import AgregarProducto from "./productos/AgregarProducto";
 import CrearProducto from "./productos/CrearProducto";
+import DecorarProducto from "./productos/DecorarProducto"
+
 
 
 
@@ -19,7 +21,8 @@ function App() {
         <Route exact path='/agregar' element={<AgregarProducto/>}/>
         <Route exact path='/login' element ={<Login/>}/>
         <Route exact path='/crear' element={<CrearProducto/>}/>
-          
+        <Route exact path='/decorar' element={<DecorarProducto/>}/>
+
         </Routes>
         
       </div>

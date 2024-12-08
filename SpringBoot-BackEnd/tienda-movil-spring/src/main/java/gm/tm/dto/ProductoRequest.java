@@ -12,20 +12,26 @@ import lombok.NoArgsConstructor;
  *
  * @author jorge
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductoDTO {
-
-    private String tipo;
+public class ProductoRequest {
+    private String tipo; //tipo de producto (smartphone, tablet, etc)
+    
     private String nombre;
     private String descripcion;
     private double precio;
     private String imagen_url;
     private int stock;
-
+    private double descuento;  // Porcentaje de descuento
+    private double garantiaExtendida;  // Costo de la garantía extendida
+    
     // Atributos específicos para productos
     private int ram; // Para Smartphone
     private double tamanoPantalla; // Para Tablet
-
+    
+    
 }
+    
+

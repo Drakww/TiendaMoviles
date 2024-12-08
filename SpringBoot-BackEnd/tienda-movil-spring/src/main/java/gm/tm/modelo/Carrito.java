@@ -4,48 +4,30 @@
  */
 package gm.tm.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import gm.tm.dto.ProductoRequest;
+import gm.tm.patrones_comportamiento.memento.CarritoMemento;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
  * @author jorge
  */
-@Entity
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Carrito {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    
-    @OneToMany
-    private List<Producto> productos = new ArrayList<>(); //Lista de productos en el carrito
-    
-    private double total;// Total del carrito (suma de los precios de los productos)
-    
-    
-//    public void agregarProducto(Producto producto){
-//        this.productos.add(producto);
-//        this.total += producto.getPrecio();
-//    }
-//    
-//    public void eliminarProducto(Producto producto){
-//        this.productos.remove(producto);
-//        this.total -= producto.getPrecio();
-//    }
+    private List<Producto> productos = new ArrayList<>();
+
+    public void agregarProducto(Producto producto) {
+        productos.add(producto);
+    }
+
+    public CarritoMemento guardar() {
+        return new CarritoMemento(productos);
+    }
+
+    public void restaurar(CarritoMemento memento) {
+        productos = memento.getEstado();
+    }
     
 }

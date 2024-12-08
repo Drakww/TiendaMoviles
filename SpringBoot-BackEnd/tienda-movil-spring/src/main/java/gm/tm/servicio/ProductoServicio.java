@@ -4,9 +4,18 @@
  */
 package gm.tm.servicio;
 
+
+import gm.tm.dto.ProductoDTO;
+import gm.tm.dto.ProductoRequest;
 import gm.tm.modelo.Producto;
+
 import gm.tm.repositorio.ProductoRepositorio;
+import java.util.ArrayList;
+
 import java.util.List;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +40,9 @@ public class ProductoServicio implements IProductoServicio{
        Producto producto = productoRepositorio.findById(idProducto).orElse(null);
        return producto;
     }
-
     @Override
     public Producto guardarProducto(Producto producto) {
+        //Convertir el ProductoDTO en la entidad Producto
         return productoRepositorio.save(producto);
     }
 
@@ -41,5 +50,37 @@ public class ProductoServicio implements IProductoServicio{
     public void eliminarProducto(Producto producto) {
         productoRepositorio.delete(producto);
     }
+
+    @Override
+    public boolean actualizarStock(Integer idProducto, int cantidad) {
+        Optional<Producto> productoOpt = productoRepositorio.findById(idProducto);
+        
+        if (productoOpt.isPresent()) {
+            Producto producto = productoOpt.get();
+            if (producto.getStock() >= cantidad) {
+                producto.setStock(producto.getStock() - cantidad);
+                productoRepositorio.save(producto);
+                return true;
+            } else {
+                throw new RuntimeException("Stock insuficiente para el producto con ID " + idProducto);
+            }
+        } else {
+            throw new RuntimeException("Producto con ID " + idProducto + " no encontrado.");
+        }
+    }
+    
+    public List<ProductoDTO> obtenerCatalogo() {
+        // Obtén todos los productos y conviértelos a ProductoDTO
+        return productoRepositorio.findAll().stream().map(this::convertirADTO).collect(Collectors.toList());
+    }
+    
+    private ProductoDTO convertirADTO(Producto producto) {
+        // Mapea un Producto a ProductoDTO
+        return null;
+    }
+    
+
+    
+    
     
 }

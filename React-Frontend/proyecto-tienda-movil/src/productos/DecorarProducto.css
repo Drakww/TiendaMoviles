@@ -1,0 +1,46 @@
+table {
+    justify-content: center;
+    width: 50%;
+    border-collapse: collapse; /* Elimina los bordes duplicados entre celdas */
+    margin: 20px 0;
+}
+
+/* Estilo de los encabezados */
+th {
+    background-color: #002a61a2; /* Color de fondo verde */
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+/* Estilo de las celdas de la tabla */
+td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #242424; /* Línea debajo de cada celda */
+}
+
+/* Fila alterna con color de fondo */
+tr:nth-child(even) {
+    background-color: #16151f; /* Color de fondo gris claro */
+}
+
+/* Efecto de hover sobre las filas */
+tr:hover {
+    background-color: #3d3d3d; /* Color de fondo gris al pasar el ratón */
+}
+
+/* Añadir un borde a la tabla */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+/* Estilo de las celdas de imágenes (si es necesario) */
+td img {
+    max-width: 100px; /* Limita el tamaño de la imagen */
+    height: auto;
+}
+
+.contenedorTabla{
+    margin-left: 40px;
+}
