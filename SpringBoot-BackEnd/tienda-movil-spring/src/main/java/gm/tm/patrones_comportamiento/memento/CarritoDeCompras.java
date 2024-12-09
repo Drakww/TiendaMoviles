@@ -2,32 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gm.tm.modelo;
+package gm.tm.patrones_comportamiento.memento;
 
-import gm.tm.dto.ProductoRequest;
-import gm.tm.patrones_comportamiento.memento.CarritoMemento;
+import gm.tm.modelo.Producto;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author jorge
  */
-@NoArgsConstructor
-public class Carrito {
+public class CarritoDeCompras {
     private List<Producto> productos = new ArrayList<>();
 
+    // Método para agregar productos al carrito
     public void agregarProducto(Producto producto) {
         productos.add(producto);
     }
 
-    public CarritoMemento guardar() {
+    // Guarda el estado del carrito en un memento
+    public CarritoMemento guardarEstado() {
         return new CarritoMemento(productos);
     }
 
-    public void restaurar(CarritoMemento memento) {
-        productos = memento.getEstado();
+    // Restaura el estado del carrito desde un memento
+    public void restaurarEstado(CarritoMemento memento) {
+        this.productos = memento.getProductos();
     }
-    
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
 }

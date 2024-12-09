@@ -11,16 +11,24 @@ import java.util.List;
  *
  * @author jorge
  */
-public class ProductoObservable {
+public class MensajeDelRemitente implements Sujeto{
     private List<Observador> observadores = new ArrayList<>();
-    
-    public void agregarObservador(Observador observador){
+
+    @Override
+    public void agregarObservador(Observador observador) {
         observadores.add(observador);
     }
-    
-    public void notificar(String mensaje){
+
+    @Override
+    public void eliminarObservador(Observador observador) {
+        observadores.remove(observador);
+    }
+
+    @Override
+    public void notificarObservadores(String mensaje) {
         for (Observador observador : observadores) {
             observador.actualizar(mensaje);
         }
     }
+    
 }

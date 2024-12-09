@@ -4,7 +4,7 @@ import './ListaProducto.css';
 
 export default function ListadoProductos() {
 
-  const urlBase = "http://localhost:8080/movil-app/productos";
+  const urlBase = "http://localhost:8080/movil-app/catalogo";
 
   //Hooks en react - Para establecer valores de Producto
   const[productos, setProductos] = useState([])

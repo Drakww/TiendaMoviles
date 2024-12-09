@@ -4,36 +4,47 @@
  */
 package gm.tm.patrones_estructura.facade;
 
-import gm.tm.dto.ProductoDTO;
 import gm.tm.dto.ProductoRequest;
 import gm.tm.modelo.Producto;
+import gm.tm.patrones_estructura.proxy.InventarioProxy;
+import gm.tm.patrones_estructura.proxy.InventarioServiceImpl;
+import gm.tm.patrones_estructura.proxy.InventarioServicio;
+
 import gm.tm.servicio.ComprarServicio;
-import gm.tm.servicio.ProductoServicio;
-import gm.tm.servicio.UsuarioServicio;
+import gm.tm.servicio.IProductoServicio;
+
+
 import java.util.List;
-import lombok.AllArgsConstructor;
+
+
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author jorge
  */
-@AllArgsConstructor
+@Service  // Anotación que registra la clase como un bean de Spring
 public class TiendaFacade {
 
-    private ProductoServicio productoServicio;
-    private ComprarServicio comprarServicio;
-    private UsuarioServicio usuarioServicio;
+    private IProductoServicio productoServicio;
+    private final InventarioServicio inventarioProxy;
 
+    public TiendaFacade(IProductoServicio productoServicio, InventarioServiceImpl inventarioReal) {
+        this.productoServicio = productoServicio;
+        // Aquí creamos una instancia del Proxy utilizando el servicio real
+        this.inventarioProxy = new InventarioProxy(inventarioReal);
+    }
+    
     // Método para obtener el catálogo de productos
-    public List<ProductoRequest> obtenerCatalogo() {
-//        return productoServicio.obtenerCatalogo();
-        return null;
+    public List<Producto> obtenerCatalogo() {
+        return productoServicio.listarProductos();
     }
-
-    // Método para realizar una compra
-    public void realizarCompra(int usuarioId, List<Integer> productosIds) {
-        usuarioServicio.verificarUsuario(usuarioId);  // Verifica al usuario
-        comprarServicio.procesarCompra(usuarioId, productosIds); // Procesa la compra
+    
+    // Método para actualizar stock
+    public void actualizarStock(Integer productoId, int nuevaCantidad){
+        if (nuevaCantidad < 0 ) {
+            throw new IllegalArgumentException("La cantidad no puede ser negativa");
+        }
+        inventarioProxy.actualizarStock(productoId, nuevaCantidad);
     }
-
 }

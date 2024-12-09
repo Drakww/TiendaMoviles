@@ -11,8 +11,7 @@ import gm.tm.modelo.Producto;
 import gm.tm.patrones_creacionales.factorymeth.ProductoFactory;
 import gm.tm.patrones_creacionales.factorymeth.Smartphone;
 import gm.tm.patrones_creacionales.factorymeth.Tablet;
-import gm.tm.patrones_estructura.decorator.DescuentoDecorator;
-import gm.tm.patrones_estructura.decorator.GarantiaExtendidaDecorator;
+
 import gm.tm.servicio.IProductoServicio;
 import java.util.List;
 import org.slf4j.Logger;

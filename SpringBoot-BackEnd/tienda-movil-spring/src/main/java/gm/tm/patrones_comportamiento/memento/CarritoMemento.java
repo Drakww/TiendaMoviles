@@ -4,9 +4,7 @@
  */
 package gm.tm.patrones_comportamiento.memento;
 
-import gm.tm.dto.ProductoRequest;
 import gm.tm.modelo.Producto;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +12,17 @@ import java.util.List;
  *
  * @author jorge
  */
+// Memento para el carrito de compras
 public class CarritoMemento {
-    private List<Producto> estado;
-    
-    public CarritoMemento(List<Producto> estado){
-        this.estado = new ArrayList<>(estado);
+
+    private final List<Producto> productos;
+
+    public CarritoMemento(List<Producto> productos) {
+        this.productos = new ArrayList<>(productos); // Clonamos para evitar que se modifique directamente
+
     }
-    
-    public List<Producto> getEstado(){
-        return estado;
+
+    public List<Producto> getProductos() {
+        return productos;
     }
 }

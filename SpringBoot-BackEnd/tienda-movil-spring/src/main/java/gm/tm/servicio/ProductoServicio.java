@@ -69,15 +69,6 @@ public class ProductoServicio implements IProductoServicio{
         }
     }
     
-    public List<ProductoDTO> obtenerCatalogo() {
-        // Obtén todos los productos y conviértelos a ProductoDTO
-        return productoRepositorio.findAll().stream().map(this::convertirADTO).collect(Collectors.toList());
-    }
-    
-    private ProductoDTO convertirADTO(Producto producto) {
-        // Mapea un Producto a ProductoDTO
-        return null;
-    }
     
 
     
