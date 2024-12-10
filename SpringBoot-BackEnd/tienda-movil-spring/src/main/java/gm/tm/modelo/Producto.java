@@ -33,7 +33,7 @@ import lombok.ToString;
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Producto {
     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     private String nombre;
@@ -53,6 +53,4 @@ public abstract class Producto {
     
     //Metodo abstracto para obtener el tipo de producto
     public abstract String getTipo();
- 
-    
 }

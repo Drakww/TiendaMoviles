@@ -30,23 +30,22 @@ export default function DecorarProducto() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Verificar si puso un id
+
     if (!productoId) {
       alert("Por favor, ingresa un ID de producto.");
       return;
     }
 
-    // Construir la URL correctamente con la interpolación
+    
     const urlBase = `http://localhost:8080/movil-app/decorar/${productoId}`;
 
     try {
-      // Enviar los datos de descuento y garantía extendida al backend
       const response = await axios.post(urlBase, {
         descuento: parseFloat(descuento),
         garantiaExtendida: parseFloat(garantiaExtendida),
       });
 
-      // Si la respuesta es exitosa, actualizar el estado con el producto decorado
+      
       setResultado(response.data);
       alert('Producto decorado correctamente');
     } catch (error) {

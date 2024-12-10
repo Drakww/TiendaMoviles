@@ -98,7 +98,7 @@ export default function CrearProducto() {
                 producto.tipo === 'tablet' && (
                     <div>
                         <label>Tamaño de Pantalla (pulgadas)</label>
-                        <input type='number' name ='tamanoPantall' value={producto.tamanoPantalla} onChange={handleChange} required/>
+                        <input type='number' name ='tamanoPantalla' value={producto.tamanoPantalla} onChange={handleChange} required/>
                     </div>
                 )
             }

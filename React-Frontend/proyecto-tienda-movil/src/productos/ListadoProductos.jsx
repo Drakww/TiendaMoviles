@@ -23,9 +23,8 @@ export default function ListadoProductos() {
 
   return (
     <div className='producto-lista'>
-      <h1>Productos Disponibles</h1>
-      <br/>
-      <h4>Lista de productos</h4>
+      <h1>Catalogo de Productos Disponibles</h1>
+
       <br/>
       <div className='producto-cards'>
         {productos.length > 0 ? (
